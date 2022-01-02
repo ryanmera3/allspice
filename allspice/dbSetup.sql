@@ -18,8 +18,7 @@ CREATE TABLE recipes(
     title TEXT NOT NULL COMMENT 'Recipe Title',
     subtitle TEXT NOT NULL COMMENT 'Recipe Subtitle',
     category TEXT NOT NULL COMMENT 'Recipe Category',
-    creatorId VARCHAR(255) NOT NULL,
-    FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+    creatorId VARCHAR(255) NOT NULL
 ) DEFAULT CHARSET UTF8 COMMENT '';
 
 INSERT INTO recipes
