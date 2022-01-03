@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace allspice.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("api/[controller]")]
   public class RecipeController : ControllerBase
   {
     private readonly RecipeService _rs;
@@ -33,7 +33,7 @@ namespace allspice.Controllers
       }
       catch (Exception e)
       {
-      return BadRequest(e.Message);
+        return BadRequest(e.Message);
       }
     }
     [HttpPost]
@@ -42,14 +42,14 @@ namespace allspice.Controllers
     {
       try
       {
-           Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-           newRecipe.creatorId = userInfo?.Id;
-           Recipe recipe = _rs.Create(newRecipe);
-           return Ok(recipe);
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        newRecipe.creatorId = userInfo?.Id;
+        Recipe recipe = _rs.Create(newRecipe);
+        return Ok(recipe);
       }
       catch (Exception e)
       {
-          return BadRequest(e.Message);
+        return BadRequest(e.Message);
       }
     }
   }

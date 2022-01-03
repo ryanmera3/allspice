@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace allspice.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("api/[controller]")]
   public class IngredientController : ControllerBase
   {
     private readonly IngredientService _ingService;
@@ -29,7 +29,7 @@ namespace allspice.Controllers
         var ingredients = _ingService.Get();
         return Ok(ingredients);
       }
-      catch(Exception e)
+      catch (Exception e)
       {
         return BadRequest(e.Message);
       }
@@ -40,13 +40,13 @@ namespace allspice.Controllers
     {
       try
       {
-           Account user = await HttpContext.GetUserInfoAsync<Account>();
-           Ingredient ingredient = _ingService.Create(newIngredient);
-           return Ok(ingredient);
+        Account user = await HttpContext.GetUserInfoAsync<Account>();
+        Ingredient ingredient = _ingService.Create(newIngredient);
+        return Ok(ingredient);
       }
       catch (Exception e)
       {
-          return BadRequest(e.Message);
+        return BadRequest(e.Message);
       }
     }
   }
