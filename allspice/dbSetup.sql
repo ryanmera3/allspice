@@ -6,11 +6,6 @@ CREATE TABLE IF NOT EXISTS accounts(
   email varchar(255) COMMENT 'User Email',
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
-
-SELECT * FROM accounts;
-
-SELECT * FROM recipes;
-
 CREATE TABLE recipes(  
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -20,6 +15,27 @@ CREATE TABLE recipes(
     category TEXT NOT NULL COMMENT 'Recipe Category',
     creatorId VARCHAR(255) NOT NULL
 ) DEFAULT CHARSET UTF8 COMMENT '';
+
+CREATE TABLE ingredients(
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  name TEXT NOT NULL COMMENT 'Ingredient Name',
+  quantity TEXT NOT NULL COMMENT 'Ingredient Amount',
+  recipeId int NOT NULL COMMENT 'Ingredient recipeId',
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+INSERT INTO ingredients
+(name, quantity, recipeId)
+VALUES
+("Pepperoni", "1.5 pounds", 1);
+
+
+SELECT * FROM accounts;
+
+SELECT * FROM recipes;
+
+SELECT * FROM ingredients;
 
 INSERT INTO recipes
 (title, subtitle, category,creatorId)
